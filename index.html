@@ -6057,19 +6057,19 @@ const substantivos = [
       removeListeners();
       criar_tendencia(true,true);
       setTimeout(addListeners,tempo_ms)
-
+      gtag('event', 'click_criar_tendencia');
     }
     function click_criar_adjetivo (e){
       removeListeners();
       criar_tendencia(true,false);
-      setTimeout(addListeners,tempo_ms)
-
+      setTimeout(addListeners,tempo_ms);
+      gtag('event', 'click_criar_adjetivo');
     }
     function click_criar_substantivo (e){
       removeListeners();
       criar_tendencia(false,true);
-      setTimeout(addListeners,tempo_ms)
-
+      setTimeout(addListeners,tempo_ms);
+      gtag('event', 'click_criar_substantivo');
     }
     function addListeners(){
       dom_nova_trend.addEventListener('click',click_criar_tendencia);
