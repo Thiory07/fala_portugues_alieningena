@@ -199,11 +199,12 @@ const substantivos = 'Accept Achiev Acknowledg Acquir Act Adapt Add Address Adju
     const exitAnimation = 'animate__fadeOutUp',
      introAnimation =  'animate__fadeInUp',
      animationStart = "animate__animated",
-     dom_nova_trend = document.querySelector('#nova_trend'),
-     dom_novo_adjetivo = document.querySelector('#novo_adjetivo'),
-     dom_novo_substantivo = document.querySelector('#novo_substantivo'),
+     controls = { 
+      trend: document.querySelector('#nova_trend'),
+      adj: document.querySelector('#novo_adjetivo'),
+      subst: document.querySelector('#novo_substantivo')
+     },
      tempo_ms = 400;
-
 
     const adjetivosLength = 4850;
     const substantivosLength = 996;
@@ -211,19 +212,17 @@ const substantivos = 'Accept Achiev Acknowledg Acquir Act Adapt Add Address Adju
     const adjetivos_container = document.querySelector('#adjetivos');
     const substantivos_container = document.querySelector('#verbos_substantivo');
 
-    function returRandom(a){
-      return Math.floor(Math.random()* a);
-    }
+    function returRandom(a){return Math.floor(Math.random()* a);}
     function criar_tendencia (is_adjetivo, is_substantivo){
-     console.log(novo_adjetivo,novo_substantivo);
+    let n=0;
      if ( is_adjetivo){
-      let adjetivoIndex = returRandom(adjetivosLength);
-      let novo_adjetivo = adjetivos[adjetivoIndex];
+      n = returRandom(adjetivosLength);
+      let novo_adjetivo = adjetivos[n];
       novo_elemento_dom (adjetivos_container, novo_adjetivo);
      }
      if( is_substantivo){
-      let substantivoIndex = returRandom(substantivosLength);
-      let novo_substantivo = substantivos[substantivoIndex]+'ing';
+      n = returRandom(substantivosLength);
+      let novo_substantivo = substantivos[n]+'ing';
       novo_elemento_dom (substantivos_container, novo_substantivo);
      }
     }
@@ -237,36 +236,37 @@ const substantivos = 'Accept Achiev Acknowledg Acquir Act Adapt Add Address Adju
       var dom_palavra = document.createElement('div');
       dom_palavra.innerHTML = innerText;
       dom_palavra.className = 'j-ativo '+animationStart+' '+introAnimation;
-      dom_palavra
       container.appendChild(dom_palavra);
     }
     function click_criar_tendencia (e){
       removeListeners();
-      criar_tendencia(true,true);
-      setTimeout(addListeners,tempo_ms)
-      gtag('event', 'click_criar_tendencia');
-    }
-    function click_criar_adjetivo (e){
-      removeListeners();
-      criar_tendencia(true,false);
       setTimeout(addListeners,tempo_ms);
-      gtag('event', 'click_criar_adjetivo');
-    }
-    function click_criar_substantivo (e){
-      removeListeners();
-      criar_tendencia(false,true);
-      setTimeout(addListeners,tempo_ms);
-      gtag('event', 'click_criar_substantivo');
+      
+      switch (e.target.id) {
+        case "novo_adjetivo":
+          criar_tendencia(true,false);
+          gtag('event', 'click_criar_adjetivo');
+          break;
+        case "novo_substantivo":
+          criar_tendencia(false,true);
+          gtag('event', 'click_criar_substantivo');
+          break;
+        default:
+          criar_tendencia(true,true);
+          gtag('event', 'click_criar_tendencia');
+          break;
+      }
+     
     }
     function addListeners(){
-      dom_nova_trend.addEventListener('click',click_criar_tendencia);
-      dom_novo_adjetivo.addEventListener('click',click_criar_adjetivo);
-      dom_novo_substantivo.addEventListener('click',click_criar_substantivo);
+     for (const p in controls) {
+      controls[p].addEventListener('click',click_criar_tendencia);
+     }
     }
     function removeListeners(){
-      dom_nova_trend.removeEventListener('click',click_criar_tendencia);
-      dom_novo_adjetivo.removeEventListener('click',click_criar_adjetivo);
-      dom_novo_substantivo.removeEventListener('click',click_criar_substantivo);
+     for (const p in controls) {
+      controls[p].removeEventListener('click',click_criar_tendencia);
+     }
     }
 
     criar_tendencia(true,true);
