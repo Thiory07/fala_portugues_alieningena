@@ -1,4 +1,5 @@
-const adjetivos = ["abandoned",
+const terms  = {
+    adjetivos : ["abandoned",
 "abdominal",
 "abhorrent",
 "abiding",
@@ -4839,9 +4840,9 @@ const adjetivos = ["abandoned",
 "zesty",
 "zippy",
 "zonked",
-"zoological"];
+"zoological"], 
 
-const substantivos = [
+substantivos : [
 "Accepting",
 "Achieving",
 "Acknowledging",
@@ -5837,4 +5838,5 @@ const substantivos = [
 "Writing",
 "Yielding",
 "Zeroing",
-"Zooming"]
+"Zooming"] 
+}
