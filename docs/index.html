@@ -42,7 +42,7 @@
     apps_url+= "";
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = apps_url+"/exec?foo=bar";
+    var theUrl = apps_url+"?foo=bar";
     xmlhttp.open("GET", theUrl);
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send();
