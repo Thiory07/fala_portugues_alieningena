@@ -23,9 +23,22 @@
       <div id="verbos_substantivo">
         <div class="j-ativo" >&nbsp;</div>
       </div>
+      
     </div>
-
-    <div id="controles"><button id="nova_trend">Nova Trend</button><button id="novo_adjetivo" >Novo Adjetivo</button><button id="novo_substantivo">Novo Verbo</button></div>
+    
+    <div id="controles">
+      <button id="nova_trend">Nova Trend</button>
+      <button id="novo_adjetivo" >Novo Adjetivo</button><button id="novo_substantivo">Novo Verbo</button>
+      <button id="btn_traduzir">traduzir</button>
+    </div>
+    <div id="traducao" > 
+      
+      <div>Tradução:</div>
+      <div id="traduzido"></div>
+      <div id="spinner-container" class="animate__animated  animate__fadeOutUp">
+        <div class="spinner"  ></div>
+      </div>
+    </div>
   </main>
   <footer>
     <p>Inspirado no app <a href="//falaportugues.vercel.app/">falaportugues.vercel.app</a>, e desenvolvido por <a href="//github.com/Thiory07">@Thiory007</a></p>
@@ -38,16 +51,29 @@
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E07LN8EXCS"></script>
   <script>
-    var apps_url = "https://script.google.com/macros/s/AKfycbwXIX5m4C6nyrjAV-db8MqPzOci_RjbvcK7LAR_0d8WurGaKB9ANr-Y16kqaO6EeA/exec";
-    apps_url+= "";
-
-    var xmlhttp = new XMLHttpRequest();
-    var theUrl = apps_url+"?foo=bar";
-    xmlhttp.open("GET", theUrl);
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send();
-
-
+    var traduzir_br = document.querySelector('#btn_traduzir'),
+    spinner = document.querySelector('#spinner-container');
+    traduzir_br.addEventListener('click', function(e){
+      console.log(e);
+      spinner.className =  animationStart+' '+introAnimation;
+      var texto = '';
+      var text_parts = document.querySelectorAll('.j-ativo');
+      texto = text_parts[0].textContent+'%20'+ text_parts[1].textContent;
+      texto = texto.toLowerCase();
+      console.log(texto);
+      fetch('https://script.google.com/macros/s/AKfycbzoyn-cIfreaCgmkLpYEOdM17E9tTQew88lXBrnh-bhz25eVd5BBZGDZSHocSFNl1oo/exec?text='+texto,
+      {
+        redirect: "follow",
+        method: "GET",
+        
+      })
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response)
+        document.querySelector('#traduzido').textContent = response.text;
+        spinner.className =  animationStart+' '+exitAnimation;
+      });
+    });
   </script>
 </body>
 </html>
