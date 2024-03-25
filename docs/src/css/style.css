@@ -185,3 +185,6 @@ text-align: right;
   button {
     cursor: pointer;
 }
+footer p{
+  font-size:0.75rem;
+}
