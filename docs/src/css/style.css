@@ -88,6 +88,7 @@ body{
 background: #181c4b;
 color: white;
 font-family: sans-serif;
+margin: 0;
 }
 a{
 color: #b6f486;
@@ -98,12 +99,12 @@ margin: auto;
 text-align: center;
 }
 footer{
-position: absolute;
+position: relative;
 bottom: 0;
 width: 100%;
 max-width: 100%;
 background: black;
-margin: -8px 0 0 -8px;
+margin: 0;
 padding: 8px 32px;
 box-sizing: border-box;
 text-align: center;
