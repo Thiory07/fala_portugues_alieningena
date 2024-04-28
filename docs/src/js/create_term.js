@@ -33,13 +33,13 @@ function criar_tendencia(is_adjetivo, is_substantivo) {
 
 function novo_elemento_dom(container, innerText) {
   var dom_to_remove = container.querySelector('.j-ativo')
-  dom_to_remove.className = animationStart + ' ' + exitAnimation;
+  dom_to_remove.className = `${animationStart} ${exitAnimation}`;
   dom_to_remove.addEventListener("animationend", function(e) {
     e.target.remove();
   });
   var dom_palavra = document.createElement('div');
   dom_palavra.innerHTML = innerText;
-  dom_palavra.className = 'j-ativo ' + animationStart + ' ' + introAnimation;
+  dom_palavra.className = `j-ativo ${animationStart} ' ' ${introAnimation}`;
   container.appendChild(dom_palavra);
 }
 
@@ -74,4 +74,4 @@ function removeListeners() {
   }
 }
 criar_tendencia(true, true);
-setTimeout(addListeners, tempo_ms)
+setTimeout(addListeners, tempo_ms);

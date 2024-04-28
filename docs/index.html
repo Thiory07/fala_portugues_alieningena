@@ -61,12 +61,7 @@
       texto = text_parts[0].textContent+'%20'+ text_parts[1].textContent;
       texto = texto.toLowerCase();
       console.log(texto);
-      fetch('https://script.google.com/macros/s/AKfycbxvPUZTWBm5aE8_EZSM_CI8QxhkUm70scZYtidZ2XJYd91_U6r5B_iTZC35DoYIU4Ro/exec?text='+texto,
-      {
-        redirect: "follow",
-        method: "GET",
-        
-      })
+      fetch('https://script.google.com/macros/s/AKfycbxvPUZTWBm5aE8_EZSM_CI8QxhkUm70scZYtidZ2XJYd91_U6r5B_iTZC35DoYIU4Ro/exec?text='+texto,{redirect: "follow",method: "GET"})
       .then(response => response.json())
       .then((response) => {
         console.log(response)
