@@ -13,8 +13,8 @@ import { TERMS } from './TERMS.js';
     TEMPO_MS = 300,
     ADJETIVOS_LENGTH = TERMS.adjetivos.length,
     SUBSTANTIVOS_LENGTH = TERMS.substantivos.length,
-    adjetivos_container = document.querySelector('#adjetivos'),
-    substantivos_container = document.querySelector('#verbos_substantivo');
+    CONTAINER_ADJETIVOS = document.querySelector('#adjetivos'),
+    CONTAINER_SUBSTANTIVOS = document.querySelector('#verbos_substantivo');
   
   function returRandom(a) {return Math.floor(Math.random() * a);}
   
@@ -23,12 +23,12 @@ import { TERMS } from './TERMS.js';
     if (is_adjetivo) {
       n = returRandom(ADJETIVOS_LENGTH);
       let novo_adjetivo = TERMS.adjetivos[n];
-      novo_elemento_dom(adjetivos_container, novo_adjetivo);
+      novo_elemento_dom(CONTAINER_ADJETIVOS, novo_adjetivo);
     }
     if (is_substantivo) {
       n = returRandom(SUBSTANTIVOS_LENGTH);
       let novo_substantivo = TERMS.substantivos[n];
-      novo_elemento_dom(substantivos_container, novo_substantivo);
+      novo_elemento_dom(CONTAINER_SUBSTANTIVOS, novo_substantivo);
     }
     return;
   }
